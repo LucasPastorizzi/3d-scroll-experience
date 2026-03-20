@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ChevronDown } from "lucide-react";
-import heroFishing from "@/assets/hero-fishing.jpg";
+import heroFishing from "@/assets/SSS.jpg";
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);

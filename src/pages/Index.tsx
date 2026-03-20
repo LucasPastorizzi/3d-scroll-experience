@@ -27,7 +27,7 @@ const Index = () => {
         image={heroFishing}
         imageAlt="Lagos de pesca do Giaretta"
       />
-
+  
       <ScrollSection
         id="restaurante"
         title="Restaurante"
