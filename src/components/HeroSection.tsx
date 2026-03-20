@@ -23,7 +23,7 @@ const HeroSection = () => {
       >
         <img
           src={heroFishing}
-          alt="Pesque Pague Giaretta - Vista aérea do lago"
+          alt="Pesque Pague Wiest - Vista aérea do lago"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/30 to-background" />

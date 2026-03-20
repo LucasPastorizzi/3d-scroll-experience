@@ -11,6 +11,15 @@ import heroEnoturismo from "@/assets/hero-enoturismo.jpg";
 import heroGarden from "@/assets/hero-garden.jpg";
 import heroEmporio from "@/assets/hero-emporio.jpg";
 import heroLazer from "@/assets/hero-lazer.jpg";
+import PesqueirasSection from "@/components/PesqueirasSection";
+
+const pescaImages = [
+  heroFishing,
+  heroFishing,
+  heroFishing,
+
+  
+];
 
 const Index = () => {
   return (
@@ -19,14 +28,8 @@ const Index = () => {
       <HeroSection />
       <AboutSection />
 
-      <ScrollSection
-        id="pesqueiras"
-        title="Pesqueiras"
-        subtitle="Pesca Esportiva"
-        description="Lagos cristalinos repletos de peixes como tilápia, pacu, carpa e tambaqui. Uma experiência única para pescadores de todos os níveis, com infraestrutura completa e equipamentos disponíveis para aluguel."
-        image={heroFishing}
-        imageAlt="Lagos de pesca do Giaretta"
-      />
+    
+    <PesqueirasSection images={pescaImages} />
   
       <ScrollSection
         id="restaurante"
