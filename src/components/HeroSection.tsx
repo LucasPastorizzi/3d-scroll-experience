@@ -24,7 +24,7 @@ const HeroSection = () => {
         <img
           src={heroFishing}
           alt="Pesque Pague Wiest - Vista aérea do lago"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/30 to-background" />
       </motion.div>
@@ -47,9 +47,7 @@ const HeroSection = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="font-heading text-6xl md:text-8xl lg:text-9xl font-black uppercase leading-none"
         >
-          <span className="text-gradient">Pesque Pague</span>
-          <br />
-          <span className="text-foreground">Giaretta</span>
+          <img src="LogoWiest.jpg"/>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
