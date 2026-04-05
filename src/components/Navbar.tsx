@@ -26,6 +26,9 @@ const navItems = [
     ],
   },
 
+  // 🔥 NOVA SEÇÃO GALERIA
+  { label: "Fotos", href: "#fotos" },
+
   { label: "Contato", href: "#contato" },
 ];
 
@@ -40,7 +43,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔥 FECHAR AO CLICAR FORA
+  // FECHAR AO CLICAR FORA
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -131,7 +134,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* 🔥 MOBILE FULL MENU */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -172,7 +175,6 @@ const Navbar = () => {
                       {item.label}
                     </button>
 
-                    {/* SUBMENU */}
                     {item.submenu && (
                       <div className="ml-3 border-l border-white/10 pl-3 space-y-1">
                         {item.submenu.map((sub) => (

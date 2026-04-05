@@ -5,14 +5,16 @@ import ScrollSection from "@/components/ScrollSection";
 import ContactSection from "@/components/ContactSection";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import PesqueirasSection from "@/components/PesqueirasSection";
+import GalleryMosaic from "@/components/GalleryMosaic";
 
+/* IMAGENS */
 import heroFishing from "@/assets/hero-fishing.jpg";
 import heroRestaurant from "@/assets/hero-restaurant.jpg";
 import heroGarden from "@/assets/hero-garden.jpg";
 import heroEmporio from "@/assets/hero-emporio.jpg";
 import heroLazer from "@/assets/hero-lazer.jpg";
 
-/* 🔥 MAIS IMAGENS */
+/* 🔥 SEÇÕES */
 
 // Pesca
 const pescaImages = [
@@ -47,7 +49,7 @@ const cabanasFechadasImages = [
   heroEmporio,
 ];
 
-// 🔥 NOVA SEÇÃO LAZER
+// Lazer
 const lazerImages = [
   heroLazer,
   heroGarden,
@@ -56,15 +58,36 @@ const lazerImages = [
   heroLazer,
 ];
 
+// 🔥 GALERIA MOSAICO (DESTAQUE)
+const galleryImages = [
+  { src: heroFishing, span: "col-span-2 row-span-2" },
+  { src: heroGarden },
+  { src: heroEmporio },
+  { src: heroLazer, span: "row-span-2" },
+  { src: heroFishing },
+  { src: heroGarden, span: "col-span-2" },
+  { src: heroEmporio },
+  { src: heroLazer },
+  { src: heroFishing, span: "col-span-2 row-span-2" },
+  { src: heroGarden },
+  { src: heroEmporio },
+  { src: heroLazer },
+];
+
 const Index = () => {
   return (
     <div className="bg-background min-h-screen overflow-x-hidden">
+
+      {/* NAVBAR */}
       <Navbar />
 
+      {/* HERO */}
       <HeroSection />
 
+      {/* SOBRE */}
       <AboutSection />
 
+      {/* PESQUEIRAS */}
       <PesqueirasSection images={pescaImages} />
 
       {/* RESTAURANTE */}
@@ -76,10 +99,27 @@ const Index = () => {
         images={restauranteImages}
         imageAlt="Restaurante"
       >
-        <p>✔ Buffet variado</p>
-        <p>✔ Comida típica</p>
-        <p>✔ Ambiente familiar</p>
-        <p>✔ Área coberta</p>
+        <p>✔ Buffet variado com pratos típicos</p>
+        <p>✔ Ambiente familiar e acolhedor</p>
+        <p>✔ Espaço coberto e confortável</p>
+        <p>✔ Ideal para almoço em família</p>
+      </ScrollSection>
+
+      {/* 🔥 LAZER (CORRIGIDO E PROFISSIONAL) */}
+      <ScrollSection
+        id="lazer"
+        title="Área de Lazer"
+        subtitle="Experiência Completa"
+        description="Um espaço pensado para proporcionar descanso, lazer e conexão com a natureza em um ambiente acolhedor e familiar."
+        images={lazerImages}
+        imageAlt="Área de lazer"
+      >
+        <p>✔ Ampla área verde para descanso e convivência</p>
+        <p>✔ Ambiente tranquilo em meio à natureza</p>
+        <p>✔ Espaços ideais para famílias e grupos</p>
+        <p>✔ Integração com lagos e áreas de pesca</p>
+        <p>✔ Perfeito para finais de semana e momentos especiais</p>
+        <p>✔ Local seguro e agradável para todas as idades</p>
       </ScrollSection>
 
       {/* CABANAS ABERTAS */}
@@ -87,13 +127,13 @@ const Index = () => {
         id="cabanas-abertas"
         title="Cabanas Abertas"
         subtitle="Pesca Esportiva"
-        description="Espaços livres para quem deseja descansar durante a pesca."
+        description="Espaços livres para descanso durante a pesca, oferecendo praticidade e conforto."
         images={cabanasAbertasImages}
         imageAlt="Cabanas abertas"
       >
-        <p>✔ Uso gratuito</p>
-        <p>✔ Próximo aos lagos</p>
-        <p>✔ Ideal para pausas</p>
+        <p>✔ Uso gratuito durante a pesca</p>
+        <p>✔ Próximas aos lagos</p>
+        <p>✔ Ideais para pausas e descanso</p>
       </ScrollSection>
 
       {/* CABANAS FECHADAS */}
@@ -101,38 +141,27 @@ const Index = () => {
         id="cabanas-fechadas"
         title="Cabanas Fechadas"
         subtitle="Aluguel"
-        description="Perfeitas para famílias, grupos e momentos especiais."
+        description="Espaços reservados e completos para famílias e grupos que buscam conforto e privacidade."
         images={cabanasFechadasImages}
         imageAlt="Cabanas fechadas"
         reverse
       >
-        <p>✔ Espaço amplo</p>
-        <p>✔ Área para churrasco</p>
-        <p>✔ Mais privacidade</p>
-        <p>✔ Ideal para eventos</p>
-        <p>✔ Reserva antecipada</p>
+        <p>✔ Espaço amplo e confortável</p>
+        <p>✔ Área ideal para churrasco</p>
+        <p>✔ Mais privacidade e comodidade</p>
+        <p>✔ Perfeito para eventos e encontros</p>
+        <p>✔ Reserva antecipada recomendada</p>
       </ScrollSection>
 
-      {/* 🔥 NOVA SEÇÃO LAZER */}
-      <ScrollSection
-        id="lazer"
-        title="Área de Lazer"
-        subtitle="Experiência Completa"
-        description="Muito além da pesca: aproveite momentos únicos com família e amigos em um ambiente natural e relaxante."
-        images={lazerImages}
-        imageAlt="Área de lazer"
-      >
-        <p>✔ Espaços para descanso</p>
-        <p>✔ Contato com a natureza</p>
-        <p>✔ Ambiente tranquilo</p>
-        <p>✔ Ideal para famílias</p>
-        <p>✔ Experiência completa de lazer</p>
-        <p>✔ Perfeito para finais de semana</p>
-      </ScrollSection>
+      {/* 🔥 GALERIA MOSAICO */}
+      <GalleryMosaic images={galleryImages} />
 
+      {/* CONTATO */}
       <ContactSection />
 
+      {/* BOTÃO WHATS */}
       <WhatsAppButton />
+
     </div>
   );
 };
