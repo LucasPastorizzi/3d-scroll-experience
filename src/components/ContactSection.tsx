@@ -1,75 +1,146 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
-
-const contactInfo = [
-  { icon: MapPin, label: "Endereço", value: "Estrada Rural, Km 5 - Interior, RS" },
-  { icon: Phone, label: "Telefone", value: "(54) 3000-0000" },
-  { icon: Clock, label: "Horário", value: "Ter a Dom — 9h às 18h" },
-];
+import { motion } from "framer-motion";
+import {
+  MapPin,
+  Phone,
+  Clock,
+  MessageCircle,
+  Navigation,
+} from "lucide-react";
 
 const ContactSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
-
   return (
-    <section id="contato" ref={ref} className="relative py-32 overflow-hidden">
-      <div className="container mx-auto px-6">
-        <motion.div style={{ y }} className="text-center mb-16">
-          <span className="text-sm uppercase tracking-[0.2em] text-primary font-medium">
-            Fale Conosco
-          </span>
-          <h2 className="mt-4 font-heading text-4xl md:text-6xl font-bold text-foreground">
-            Entre em Contato
-          </h2>
-        </motion.div>
+    <section id="contato" className="relative">
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          {contactInfo.map((item, i) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 40, rotateX: 15 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
-              className="glass-card rounded-2xl p-8 text-center group hover:border-primary/40 transition-colors"
-            >
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                <item.icon size={24} />
-              </div>
-              <h3 className="font-heading text-lg font-bold text-foreground">{item.label}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{item.value}</p>
-            </motion.div>
-          ))}
-        </div>
+      {/* 🔥 MAPA FULL (BASE DA SEÇÃO) */}
+      <div className="relative w-full h-[70vh] min-h-[400px] md:h-[80vh]">
+        <iframe
+          src="https://www.google.com/maps?q=Ivoti+RS&output=embed"
+          className="absolute inset-0 w-full h-full border-0"
+          loading="lazy"
+        />
 
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-        >
-          <a
-            href="https://wa.me/5500000000000?text=Olá! Gostaria de mais informações."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 font-heading text-lg font-bold text-accent-foreground shadow-lg shadow-accent/25 transition-transform hover:scale-105"
-          >
-            <MessageCircle size={22} />
-            Fale pelo WhatsApp
-          </a>
-        </motion.div>
+        {/* 🔥 OVERLAY ESCURO (LEGIBILIDADE) */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
       </div>
 
-      {/* Footer */}
-      <div className="mt-32 border-t border-border pt-8 text-center">
-        <p className="text-sm text-muted-foreground">
-          © 2026 Pesque Pague Giaretta. Todos os direitos reservados.
-        </p>
+      {/* 🔥 CONTEÚDO SOBREPOSTO */}
+      <div className="absolute inset-0 flex items-end md:items-center">
+        <div className="container mx-auto px-4 md:px-6 pb-10 md:pb-0">
+          
+          <motion.div
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="grid lg:grid-cols-2 gap-6 items-center"
+          >
+
+            {/* 🔥 TEXTO PRINCIPAL */}
+            <div className="text-white max-w-xl">
+              <span className="text-xs md:text-sm uppercase tracking-widest text-primary">
+                Localização
+              </span>
+
+              <h2 className="text-3xl md:text-5xl font-bold mt-3 leading-tight">
+                Venha viver uma experiência única
+              </h2>
+
+              <p className="mt-4 text-sm md:text-base text-white/80">
+                Natureza, pesca, gastronomia e momentos inesquecíveis em um só lugar.
+              </p>
+
+              {/* CTA */}
+              <div className="flex flex-col sm:flex-row gap-3 mt-6">
+
+                <a
+                  href="https://wa.me/5500000000000"
+                  target="_blank"
+                  className="flex items-center justify-center gap-2 bg-green-500 px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
+                >
+                  <MessageCircle size={20} />
+                  WhatsApp
+                </a>
+
+                <a
+                  href="https://www.google.com/maps"
+                  target="_blank"
+                  className="flex items-center justify-center gap-2 border border-white/40 px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition"
+                >
+                  <Navigation size={18} />
+                  Como chegar
+                </a>
+
+              </div>
+            </div>
+
+            {/* 🔥 CARD DE INFORMAÇÕES */}
+            <div className="bg-background/95 backdrop-blur-xl rounded-2xl p-5 md:p-7 shadow-2xl space-y-5">
+
+              {/* ENDEREÇO */}
+              <div className="flex gap-4 items-start">
+                <MapPin className="text-primary mt-1" />
+                <div>
+                  <p className="font-semibold">Endereço</p>
+                  <p className="text-sm text-muted-foreground">
+                    Estrada Rural, Km 5<br />
+                    Interior - RS
+                  </p>
+                </div>
+              </div>
+
+              {/* TELEFONE */}
+              <div className="flex gap-4 items-start">
+                <Phone className="text-primary mt-1" />
+                <div>
+                  <p className="font-semibold">Telefone</p>
+                  <p className="text-sm text-muted-foreground">
+                    (54) 3000-0000
+                  </p>
+                </div>
+              </div>
+
+              {/* HORÁRIO MELHORADO */}
+              <div className="flex gap-4 items-start">
+                <Clock className="text-primary mt-1" />
+                <div>
+                  <p className="font-semibold">Funcionamento</p>
+
+                  <div className="mt-2 text-sm text-muted-foreground space-y-1">
+                    <div className="flex justify-between">
+                      <span>Terça - Sexta</span>
+                      <span>09h - 18h</span>
+                    </div>
+
+                    <div className="flex justify-between">
+                      <span>Sábado</span>
+                      <span>08h - 19h</span>
+                    </div>
+
+                    <div className="flex justify-between">
+                      <span>Domingo</span>
+                      <span>08h - 19h</span>
+                    </div>
+
+                    <div className="flex justify-between text-red-500">
+                      <span>Segunda</span>
+                      <span>Fechado</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* INFO EXTRA */}
+              <div className="text-xs text-muted-foreground border-t pt-3">
+                📍 Fácil acesso • 🚗 Estacionamento • 🌿 Ambiente familiar
+              </div>
+
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* 🔥 FOOTER */}
+      <div className="py-6 text-center text-sm text-muted-foreground bg-background">
+        © 2026 Pesque Pague Giaretta. Todos os direitos reservados.
       </div>
     </section>
   );
