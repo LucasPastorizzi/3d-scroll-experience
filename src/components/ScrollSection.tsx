@@ -22,6 +22,7 @@ const ScrollSection = ({
   images,
   imageAlt,
   reverse = false,
+  children,
 }: ScrollSectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -35,33 +36,23 @@ const ScrollSection = ({
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  // 🔥 MOBILE SAFE (menos agressivo)
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
   const rotateY = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [reverse ? -15 : 15, 0, reverse ? 15 : -15]
+    [reverse ? -8 : 8, 0, reverse ? 8 : -8]
   );
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.7, 1],
-    [0.8, 1, 1, 0.8]
-  );
-  const imgY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.9, 1, 1, 0.9]);
+  const imgY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
-  /* =========================
-     AUTOPLAY CARROSSEL
-  ========================= */
   useEffect(() => {
     if (isInteracting || imageList.length <= 1) return;
 
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % imageList.length);
-    }, 3000); // tempo de troca
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [isInteracting, imageList.length]);
@@ -70,35 +61,37 @@ const ScrollSection = ({
     <section
       id={id}
       ref={ref}
-      className="relative min-h-screen flex items-center py-20 overflow-hidden section-3d"
+      className="relative min-h-screen flex items-center py-12 md:py-20 overflow-hidden"
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 md:px-6">
         <div
-          className={`grid lg:grid-cols-2 gap-16 items-center ${
-            reverse ? "lg:direction-rtl" : ""
+          className={`grid gap-10 items-center ${
+            reverse
+              ? "lg:grid-cols-2 lg:flex-row-reverse"
+              : "lg:grid-cols-2"
           }`}
         >
           {/* IMAGE */}
           <motion.div
             style={{ y: imgY, rotateY, scale }}
-            className={`relative ${reverse ? "lg:order-2" : ""}`}
+            className={`${reverse ? "lg:order-2" : ""}`}
           >
             <div className="relative overflow-hidden rounded-2xl">
               <motion.img
                 key={imageList[activeIndex]}
                 src={imageList[activeIndex]}
                 alt={imageAlt}
-                className="w-full aspect-[4/3] object-cover"
+                className="w-full h-[250px] md:h-[400px] object-cover"
                 initial={{ opacity: 0.7, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
 
             {/* THUMBNAILS */}
             {imageList.length > 1 && (
-              <div className="flex gap-3 mt-4 overflow-x-auto pb-2">
+              <div className="flex gap-2 mt-3 overflow-x-auto pb-2 scrollbar-hide">
                 {imageList.map((img, index) => (
                   <img
                     key={index}
@@ -106,48 +99,47 @@ const ScrollSection = ({
                     onClick={() => {
                       setActiveIndex(index);
                       setIsInteracting(true);
-                      setTimeout(() => setIsInteracting(false), 5000);
+                      setTimeout(() => setIsInteracting(false), 4000);
                     }}
-                    className={`w-24 h-20 object-cover rounded-lg cursor-pointer border-2 transition ${
+                    className={`w-16 h-14 md:w-20 md:h-16 object-cover rounded-md cursor-pointer border transition ${
                       activeIndex === index
                         ? "border-primary scale-105"
-                        : "border-transparent opacity-70 hover:opacity-100"
+                        : "border-transparent opacity-70"
                     }`}
                   />
                 ))}
               </div>
             )}
-
-            {/* DECORATION */}
-            <motion.div
-              style={{ opacity }}
-              className="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-2xl border-2 border-primary/20"
-            />
           </motion.div>
 
           {/* TEXT */}
           <motion.div
             style={{ y, opacity }}
-            className={reverse ? "lg:order-1" : ""}
+            className={`max-w-xl ${reverse ? "lg:order-1" : ""}`}
           >
-            <motion.span className="text-sm uppercase tracking-[0.2em] text-primary font-medium">
+            <span className="text-xs uppercase tracking-widest text-primary font-medium">
               {subtitle}
-            </motion.span>
+            </span>
 
-            <h2 className="mt-4 font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+            <h2 className="mt-2 text-2xl md:text-4xl font-bold">
               {title}
             </h2>
 
-            <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-lg">
+            <p className="mt-3 text-sm md:text-base text-muted-foreground">
               {description}
             </p>
 
+            {children && (
+              <div className="mt-5 space-y-2 text-sm md:text-base text-muted-foreground">
+                {children}
+              </div>
+            )}
+
             <motion.div
-              className="mt-8 h-1 w-20 rounded-full bg-gradient-to-r from-primary to-accent"
+              className="mt-6 h-1 w-16 bg-gradient-to-r from-primary to-accent rounded-full"
               initial={{ width: 0 }}
-              whileInView={{ width: 80 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              whileInView={{ width: 60 }}
+              transition={{ duration: 0.8 }}
             />
           </motion.div>
         </div>

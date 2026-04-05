@@ -8,33 +8,53 @@ import PesqueirasSection from "@/components/PesqueirasSection";
 
 import heroFishing from "@/assets/hero-fishing.jpg";
 import heroRestaurant from "@/assets/hero-restaurant.jpg";
-import heroEnoturismo from "@/assets/hero-enoturismo.jpg";
 import heroGarden from "@/assets/hero-garden.jpg";
 import heroEmporio from "@/assets/hero-emporio.jpg";
 import heroLazer from "@/assets/hero-lazer.jpg";
 
-/* =========================
-   ARRAYS DE IMAGENS
-========================= */
+/* 🔥 MAIS IMAGENS */
 
 // Pesca
 const pescaImages = [
   heroFishing,
+  heroGarden,
   heroFishing,
-  heroFishing,
+  heroGarden,
 ];
 
-// Restaurante (simulação com imagens existentes)
+// Restaurante
 const restauranteImages = [
-  heroRestaurant, // buffet geral
-  heroGarden,     // ambiente
-  heroEmporio,    // produtos
-  heroLazer,      // espaço
+  heroRestaurant,
+  heroGarden,
+  heroEmporio,
+  heroRestaurant,
+  heroGarden,
 ];
 
-/* =========================
-   COMPONENT
-========================= */
+// Cabanas abertas
+const cabanasAbertasImages = [
+  heroFishing,
+  heroGarden,
+  heroFishing,
+  heroGarden,
+];
+
+// Cabanas fechadas
+const cabanasFechadasImages = [
+  heroLazer,
+  heroEmporio,
+  heroLazer,
+  heroEmporio,
+];
+
+// 🔥 NOVA SEÇÃO LAZER
+const lazerImages = [
+  heroLazer,
+  heroGarden,
+  heroEmporio,
+  heroFishing,
+  heroLazer,
+];
 
 const Index = () => {
   return (
@@ -45,60 +65,70 @@ const Index = () => {
 
       <AboutSection />
 
-      {/* PESQUEIRAS */}
       <PesqueirasSection images={pescaImages} />
 
-      {/* RESTAURANTE (AGORA COM GALERIA) */}
+      {/* RESTAURANTE */}
       <ScrollSection
         id="restaurante"
         title="Restaurante"
         subtitle="Gastronomia"
-        description="Explore nosso buffet completo com uma variedade de pratos, sabores autênticos e um ambiente acolhedor em meio à natureza. Uma experiência gastronômica pensada para toda a família."
+        description="Explore nosso buffet completo com pratos típicos, bebidas e um ambiente acolhedor em meio à natureza."
         images={restauranteImages}
-        imageAlt="Restaurante Giaretta"
-      />
+        imageAlt="Restaurante"
+      >
+        <p>✔ Buffet variado</p>
+        <p>✔ Comida típica</p>
+        <p>✔ Ambiente familiar</p>
+        <p>✔ Área coberta</p>
+      </ScrollSection>
 
-      {/* ENOTURISMO */}
+      {/* CABANAS ABERTAS */}
       <ScrollSection
-        id="enoturismo"
-        title="Enoturismo"
-        subtitle="Vinhos & Degustação"
-        description="Descubra os sabores dos vinhos artesanais da região. Faça um tour pela vinícola, conheça o processo de produção e desfrute de degustações exclusivas em meio às videiras."
-        image={heroEnoturismo}
-        imageAlt="Vinícola e enoturismo"
-      />
+        id="cabanas-abertas"
+        title="Cabanas Abertas"
+        subtitle="Pesca Esportiva"
+        description="Espaços livres para quem deseja descansar durante a pesca."
+        images={cabanasAbertasImages}
+        imageAlt="Cabanas abertas"
+      >
+        <p>✔ Uso gratuito</p>
+        <p>✔ Próximo aos lagos</p>
+        <p>✔ Ideal para pausas</p>
+      </ScrollSection>
 
-      {/* JARDIM */}
+      {/* CABANAS FECHADAS */}
       <ScrollSection
-        id="jardim"
-        title="Jardim Botânico"
-        subtitle="Natureza"
-        description="Passeie por trilhas cercadas de vegetação nativa, flores tropicais e espécies raras. Um refúgio de paz e contemplação."
-        image={heroGarden}
-        imageAlt="Jardim botânico do Giaretta"
+        id="cabanas-fechadas"
+        title="Cabanas Fechadas"
+        subtitle="Aluguel"
+        description="Perfeitas para famílias, grupos e momentos especiais."
+        images={cabanasFechadasImages}
+        imageAlt="Cabanas fechadas"
         reverse
-      />
+      >
+        <p>✔ Espaço amplo</p>
+        <p>✔ Área para churrasco</p>
+        <p>✔ Mais privacidade</p>
+        <p>✔ Ideal para eventos</p>
+        <p>✔ Reserva antecipada</p>
+      </ScrollSection>
 
-      {/* EMPÓRIO */}
-      <ScrollSection
-        id="emporio"
-        title="Empório"
-        subtitle="Produtos Artesanais"
-        description="Leve um pedaço do Giaretta para casa com nossos produtos coloniais selecionados: queijos, vinhos, geleias e muito mais."
-        image={heroEmporio}
-        imageAlt="Empório com produtos artesanais"
-      />
-
-      {/* LAZER */}
+      {/* 🔥 NOVA SEÇÃO LAZER */}
       <ScrollSection
         id="lazer"
         title="Área de Lazer"
-        subtitle="Diversão para Todos"
-        description="Piscinas, playground, campos e espaços para churrasco. Um ambiente completo para toda a família relaxar e se divertir."
-        image={heroLazer}
-        imageAlt="Área de lazer com piscina"
-        reverse
-      />
+        subtitle="Experiência Completa"
+        description="Muito além da pesca: aproveite momentos únicos com família e amigos em um ambiente natural e relaxante."
+        images={lazerImages}
+        imageAlt="Área de lazer"
+      >
+        <p>✔ Espaços para descanso</p>
+        <p>✔ Contato com a natureza</p>
+        <p>✔ Ambiente tranquilo</p>
+        <p>✔ Ideal para famílias</p>
+        <p>✔ Experiência completa de lazer</p>
+        <p>✔ Perfeito para finais de semana</p>
+      </ScrollSection>
 
       <ContactSection />
 
