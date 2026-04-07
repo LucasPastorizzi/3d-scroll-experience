@@ -18,11 +18,8 @@ const GalleryMosaic = ({ images }: GalleryProps) => {
     <section id="fotos" className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6">
 
-        {/* HEADER */}
+        {/* tirar do codigo */}
         <div className="text-center mb-14">
-          <span className="text-xs uppercase tracking-widest text-primary">
-            Galeria
-          </span>
 
           <h2 className="text-3xl md:text-5xl font-bold mt-3">
             Grandes Capturas & Momentos

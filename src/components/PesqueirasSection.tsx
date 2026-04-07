@@ -27,9 +27,6 @@ const PesqueirasSection = ({ images }: Props) => {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <span className="text-sm uppercase tracking-[0.2em] text-primary font-medium">
-            Experiência completa
-          </span>
 
           <h2 className="mt-4 text-4xl md:text-6xl font-bold">
             Pesqueiras do Giaretta

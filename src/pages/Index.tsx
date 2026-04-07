@@ -94,7 +94,7 @@ const Index = () => {
       <ScrollSection
         id="restaurante"
         title="Restaurante"
-        subtitle="Gastronomia"
+        subtitle=""
         description="Explore nosso buffet completo com pratos típicos, bebidas e um ambiente acolhedor em meio à natureza."
         images={restauranteImages}
         imageAlt="Restaurante"
@@ -109,7 +109,7 @@ const Index = () => {
       <ScrollSection
         id="lazer"
         title="Área de Lazer"
-        subtitle="Experiência Completa"
+        subtitle=""
         description="Um espaço pensado para proporcionar descanso, lazer e conexão com a natureza em um ambiente acolhedor e familiar."
         images={lazerImages}
         imageAlt="Área de lazer"
@@ -126,7 +126,7 @@ const Index = () => {
       <ScrollSection
         id="cabanas-abertas"
         title="Cabanas Abertas"
-        subtitle="Pesca Esportiva"
+        subtitle=""
         description="Espaços livres para descanso durante a pesca, oferecendo praticidade e conforto."
         images={cabanasAbertasImages}
         imageAlt="Cabanas abertas"
@@ -140,7 +140,7 @@ const Index = () => {
       <ScrollSection
         id="cabanas-fechadas"
         title="Cabanas Fechadas"
-        subtitle="Aluguel"
+        subtitle=""
         description="Espaços reservados e completos para famílias e grupos que buscam conforto e privacidade."
         images={cabanasFechadasImages}
         imageAlt="Cabanas fechadas"

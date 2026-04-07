@@ -32,11 +32,8 @@ const AboutSection = () => {
         }}
         className="container mx-auto px-6"
       >
-        {/* TÍTULO */}
+        {/* apagar do código */}
         <div className="max-w-4xl mx-auto text-center">
-          <span className="text-sm uppercase tracking-[0.2em] text-primary font-medium">
-            Sobre o espaço
-          </span>
 
           <h2 className="mt-4 font-heading text-4xl md:text-6xl font-bold text-foreground">
             Pesque Pague Giaretta
