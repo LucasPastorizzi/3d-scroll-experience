@@ -128,11 +128,6 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              {/* INFO EXTRA */}
-              <div className="text-xs text-muted-foreground border-t pt-3">
-                📍 Fácil acesso • 🚗 Estacionamento • 🌿 Ambiente familiar
-              </div>
-
             </div>
           </motion.div>
         </div>
