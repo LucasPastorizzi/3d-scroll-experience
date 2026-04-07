@@ -27,15 +27,15 @@ const PesqueirasSection = ({ images }: Props) => {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <span className="text-sm uppercase tracking-[0.2em] text-primary font-medium">
+          <span className="text-sm uppercase tracking-[0.2em] text-gray-600 font-medium">
             Experiência completa
           </span>
 
-          <h2 className="mt-4 text-4xl md:text-6xl font-bold">
+          <h2 className="mt-4 text-4xl md:text-6xl font-bold text-black">
             Pesqueiras do Giaretta
           </h2>
 
-          <p className="mt-6 text-lg text-muted-foreground">
+          <p className="mt-6 text-lg text-gray-800">
             Um ambiente planejado para oferecer o melhor da pesca, com estrutura completa,
             variedade de peixes e uma conexão única com a natureza.
           </p>
@@ -58,17 +58,17 @@ const PesqueirasSection = ({ images }: Props) => {
             />
 
             <div>
-              <h3 className="text-3xl md:text-4xl font-bold">
+              <h3 className="text-3xl md:text-4xl font-bold text-black">
                 Pesque & Pague
               </h3>
 
-              <p className="mt-6 text-lg text-muted-foreground">
+              <p className="mt-6 text-lg text-gray-800">
                 Ideal para quem busca lazer e praticidade, pesque e leve seu peixe na hora.
               </p>
 
               <button
                 onClick={() => setOpenModal(true)}
-                className="mt-6 px-6 py-3 rounded-xl bg-primary text-white font-medium hover:scale-105 transition"
+                className="mt-6 px-6 py-3 rounded-xl bg-black text-white font-medium hover:bg-gray-800 hover:scale-105 transition"
               >
                 Ver valores dos peixes
               </button>
@@ -94,17 +94,17 @@ const PesqueirasSection = ({ images }: Props) => {
           className="mt-24 grid md:grid-cols-2 gap-12 items-center"
         >
           <div>
-            <h3 className="text-3xl md:text-4xl font-bold">
+            <h3 className="text-3xl md:text-4xl font-bold text-black">
               Pesca Esportiva
             </h3>
 
-            <p className="mt-6 text-lg text-muted-foreground">
+            <p className="mt-6 text-lg text-gray-800">
               Experiência completa para pescadores, com estrutura e variedade de peixes.
             </p>
 
-            <div className="mt-8 p-6 rounded-2xl bg-primary/10 border border-primary/20">
-              <span className="text-sm text-primary">Valor por pessoa</span>
-              <h4 className="text-3xl font-bold mt-2">R$ 50,00</h4>
+            <div className="mt-8 p-6 rounded-2xl bg-white border border-gray-300">
+              <span className="text-sm text-gray-600">Valor por pessoa</span>
+              <h4 className="text-3xl font-bold mt-2 text-black">R$ 50,00</h4>
             </div>
           </div>
 
@@ -120,25 +120,25 @@ const PesqueirasSection = ({ images }: Props) => {
       <AnimatePresence>
         {openModal && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md px-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-background rounded-2xl max-w-4xl w-full p-6 relative"
+              className="bg-white rounded-2xl max-w-4xl w-full p-6 relative shadow-xl"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
             >
               <button
                 onClick={() => setOpenModal(false)}
-                className="absolute top-4 right-4"
+                className="absolute top-4 right-4 text-gray-600 hover:text-black"
               >
                 ✕
               </button>
 
-              <h3 className="text-2xl font-bold mb-6">
+              <h3 className="text-2xl font-bold mb-6 text-black">
                 Valores dos Peixes
               </h3>
 
@@ -151,18 +151,18 @@ const PesqueirasSection = ({ images }: Props) => {
                       key={i}
                       layout
                       onClick={() => setActiveIndex(isOpen ? null : i)}
-                      className="cursor-pointer bg-secondary p-4 rounded-xl overflow-hidden"
+                      className="cursor-pointer bg-white border border-gray-200 p-4 rounded-xl overflow-hidden"
                     >
                       {/* HEADER */}
                       <div className="flex items-center gap-4">
                         <img src={p.img} className="w-16 h-16 rounded-lg object-cover" />
 
                         <div className="flex-1">
-                          <h4 className="font-bold">{p.nome}</h4>
-                          <p className="text-primary">{p.preco}</p>
+                          <h4 className="font-bold text-black">{p.nome}</h4>
+                          <p className="text-gray-700">{p.preco}</p>
                         </div>
 
-                        <span>{isOpen ? "▲" : "▼"}</span>
+                        <span className="text-gray-600">{isOpen ? "▲" : "▼"}</span>
                       </div>
 
                       {/* EXPANSÃO */}
@@ -179,7 +179,7 @@ const PesqueirasSection = ({ images }: Props) => {
                               className="w-full h-40 object-cover rounded-lg mb-3"
                             />
 
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-sm text-gray-600">
                               Peixe fresco de alta qualidade, capturado diretamente dos nossos lagos.
                             </p>
                           </motion.div>

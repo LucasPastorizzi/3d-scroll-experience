@@ -76,7 +76,7 @@ const galleryImages = [
 
 const Index = () => {
   return (
-    <div className="bg-background min-h-screen overflow-x-hidden">
+    <div className="bg-gray-100 min-h-screen overflow-x-hidden">
 
       {/* NAVBAR */}
       <Navbar />
@@ -105,7 +105,7 @@ const Index = () => {
         <p>✔ Ideal para almoço em família</p>
       </ScrollSection>
 
-      {/* 🔥 LAZER (CORRIGIDO E PROFISSIONAL) */}
+      {/* LAZER */}
       <ScrollSection
         id="lazer"
         title="Área de Lazer"
@@ -153,13 +153,13 @@ const Index = () => {
         <p>✔ Reserva antecipada recomendada</p>
       </ScrollSection>
 
-      {/* 🔥 GALERIA MOSAICO */}
+      {/* GALERIA */}
       <GalleryMosaic images={galleryImages} />
 
       {/* CONTATO */}
       <ContactSection />
 
-      {/* BOTÃO WHATS */}
+      {/* WHATS */}
       <WhatsAppButton />
 
     </div>
