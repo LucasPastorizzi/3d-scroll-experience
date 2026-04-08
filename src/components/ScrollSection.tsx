@@ -11,6 +11,7 @@ interface ScrollSectionProps {
   imageAlt: string;
   reverse?: boolean;
   children?: ReactNode;
+  bg?: "light" | "dark"; // 🔥 NOVO
 }
 
 const ScrollSection = ({
@@ -23,6 +24,7 @@ const ScrollSection = ({
   imageAlt,
   reverse = false,
   children,
+  bg = "light",
 }: ScrollSectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -36,7 +38,6 @@ const ScrollSection = ({
     offset: ["start end", "end start"],
   });
 
-  // 🔥 MOBILE SAFE (menos agressivo)
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
   const rotateY = useTransform(
     scrollYProgress,
@@ -57,11 +58,15 @@ const ScrollSection = ({
     return () => clearInterval(interval);
   }, [isInteracting, imageList.length]);
 
+  const isDark = bg === "dark";
+
   return (
     <section
       id={id}
       ref={ref}
-      className="relative min-h-screen flex items-center py-12 md:py-20 overflow-hidden"
+      className={`relative min-h-screen flex items-center py-12 md:py-20 overflow-hidden ${
+        isDark ? "bg-[#0f0f0f] text-white" : "bg-gray-100 text-black"
+      }`}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div
@@ -76,7 +81,7 @@ const ScrollSection = ({
             style={{ y: imgY, rotateY, scale }}
             className={`${reverse ? "lg:order-2" : ""}`}
           >
-            <div className="relative overflow-hidden rounded-2xl">
+            <div className="relative overflow-hidden rounded-2xl shadow-md">
               <motion.img
                 key={imageList[activeIndex]}
                 src={imageList[activeIndex]}
@@ -86,7 +91,13 @@ const ScrollSection = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div
+                className={`absolute inset-0 ${
+                  isDark
+                    ? "bg-gradient-to-t from-black/50 to-transparent"
+                    : "bg-gradient-to-t from-black/30 to-transparent"
+                }`}
+              />
             </div>
 
             {/* THUMBNAILS */}
@@ -103,8 +114,8 @@ const ScrollSection = ({
                     }}
                     className={`w-16 h-14 md:w-20 md:h-16 object-cover rounded-md cursor-pointer border transition ${
                       activeIndex === index
-                        ? "border-primary scale-105"
-                        : "border-transparent opacity-70"
+                        ? "border-white scale-105"
+                        : "border-gray-400 opacity-70"
                     }`}
                   />
                 ))}
@@ -117,26 +128,44 @@ const ScrollSection = ({
             style={{ y, opacity }}
             className={`max-w-xl ${reverse ? "lg:order-1" : ""}`}
           >
-            <span className="text-xs uppercase tracking-widest text-primary font-medium">
+            <span
+              className={`text-xs uppercase tracking-widest font-medium ${
+                isDark ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
               {subtitle}
             </span>
 
-            <h2 className="mt-2 text-2xl md:text-4xl font-bold">
+            <h2
+              className={`mt-2 text-2xl md:text-4xl font-bold ${
+                isDark ? "text-white" : "text-black"
+              }`}
+            >
               {title}
             </h2>
 
-            <p className="mt-3 text-sm md:text-base text-muted-foreground">
+            <p
+              className={`mt-3 text-sm md:text-base ${
+                isDark ? "text-gray-300" : "text-gray-800"
+              }`}
+            >
               {description}
             </p>
 
             {children && (
-              <div className="mt-5 space-y-2 text-sm md:text-base text-muted-foreground">
+              <div
+                className={`mt-5 space-y-2 text-sm md:text-base ${
+                  isDark ? "text-gray-300" : "text-gray-700"
+                }`}
+              >
                 {children}
               </div>
             )}
 
             <motion.div
-              className="mt-6 h-1 w-16 bg-gradient-to-r from-primary to-accent rounded-full"
+              className={`mt-6 h-[2px] w-16 rounded-full ${
+                isDark ? "bg-gray-600" : "bg-gray-400"
+              }`}
               initial={{ width: 0 }}
               whileInView={{ width: 60 }}
               transition={{ duration: 0.8 }}

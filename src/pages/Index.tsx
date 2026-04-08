@@ -58,7 +58,7 @@ const lazerImages = [
   heroLazer,
 ];
 
-// 🔥 GALERIA MOSAICO (DESTAQUE)
+// 🔥 GALERIA MOSAICO
 const galleryImages = [
   { src: heroFishing, span: "col-span-2 row-span-2" },
   { src: heroGarden },
@@ -90,7 +90,7 @@ const Index = () => {
       {/* PESQUEIRAS */}
       <PesqueirasSection images={pescaImages} />
 
-      {/* RESTAURANTE */}
+      {/* RESTAURANTE 🔥 FUNDO ESCURO */}
       <ScrollSection
         id="restaurante"
         title="Restaurante"
@@ -98,6 +98,7 @@ const Index = () => {
         description="Explore nosso buffet completo com pratos típicos, bebidas e um ambiente acolhedor em meio à natureza."
         images={restauranteImages}
         imageAlt="Restaurante"
+        bg="dark"
       >
         <p>✔ Buffet variado com pratos típicos</p>
         <p>✔ Ambiente familiar e acolhedor</p>
@@ -113,6 +114,7 @@ const Index = () => {
         description="Um espaço pensado para proporcionar descanso, lazer e conexão com a natureza em um ambiente acolhedor e familiar."
         images={lazerImages}
         imageAlt="Área de lazer"
+        bg="light"
       >
         <p>✔ Ampla área verde para descanso e convivência</p>
         <p>✔ Ambiente tranquilo em meio à natureza</p>
@@ -130,6 +132,7 @@ const Index = () => {
         description="Espaços livres para descanso durante a pesca, oferecendo praticidade e conforto."
         images={cabanasAbertasImages}
         imageAlt="Cabanas abertas"
+        bg="light"
       >
         <p>✔ Uso gratuito durante a pesca</p>
         <p>✔ Próximas aos lagos</p>
@@ -145,6 +148,7 @@ const Index = () => {
         images={cabanasFechadasImages}
         imageAlt="Cabanas fechadas"
         reverse
+        bg="light"
       >
         <p>✔ Espaço amplo e confortável</p>
         <p>✔ Área ideal para churrasco</p>
