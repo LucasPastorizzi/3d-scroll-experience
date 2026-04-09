@@ -64,7 +64,7 @@ const ScrollSection = ({
     <section
       id={id}
       ref={ref}
-      className={`relative min-h-screen flex items-center py-12 md:py-20 overflow-hidden ${
+      className={`relative min-h-screen flex items-center py-8 md:py-16 overflow-hidden ${
         isDark ? "bg-[#0f0f0f] text-white" : "bg-gray-100 text-black"
       }`}
     >

@@ -19,7 +19,7 @@ const AboutSection = () => {
     <section
       id="sobre"
       ref={ref}
-      className="relative py-40 overflow-hidden section-3d"
+      className="relative py-20 overflow-hidden section-3d"
       style={{ perspective: "1200px" }}
     >
       <motion.div

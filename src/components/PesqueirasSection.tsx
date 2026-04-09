@@ -17,7 +17,7 @@ const PesqueirasSection = ({ images }: Props) => {
   ];
 
   return (
-    <section id="pesqueiras" className="relative py-40 overflow-hidden">
+    <section id="pesqueiras" className="relative py-20 overflow-hidden">
       <div className="container mx-auto px-6">
 
         {/* TÍTULO */}

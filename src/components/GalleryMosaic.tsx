@@ -15,7 +15,7 @@ const GalleryMosaic = ({ images }: GalleryProps) => {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <section id="fotos" className="py-20 md:py-32 bg-background">
+    <section id="fotos" className="py-12 md:py-20 bg-background">
       <div className="container mx-auto px-4 md:px-6">
 
         {/* tirar do codigo */}
