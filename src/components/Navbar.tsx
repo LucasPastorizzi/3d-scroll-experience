@@ -35,7 +35,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const whatsappLink = "https://wa.me/5551999999999"; // 🔥 TROQUE PELO SEU NÚMERO
+  const whatsappLink = "https://wa.me/5551999999999";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -43,7 +43,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // FECHAR AO CLICAR FORA
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -69,7 +68,9 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-card py-3" : "py-5 bg-transparent"
+        scrolled
+          ? "bg-black/30 backdrop-blur-md py-3"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
@@ -81,7 +82,7 @@ const Navbar = () => {
             e.preventDefault();
             scrollTo("#hero");
           }}
-          className="text-lg md:text-2xl font-bold tracking-wider"
+          className="text-lg md:text-2xl font-bold tracking-wider text-gray-300"
         >
           <span className="text-gradient">Pesque Pague Wiest</span>
         </motion.a>
@@ -96,7 +97,7 @@ const Navbar = () => {
                   e.preventDefault();
                   scrollTo(item.href);
                 }}
-                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition rounded-lg hover:bg-secondary flex items-center gap-1"
+                className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition rounded-lg hover:bg-white/10 flex items-center gap-1"
               >
                 {item.label}
                 {item.submenu && <span className="text-xs">▼</span>}
@@ -140,7 +141,7 @@ const Navbar = () => {
 
         {/* MOBILE BUTTON */}
         <button
-          className="lg:hidden p-2"
+          className="lg:hidden p-2 text-gray-300"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={26} /> : <Menu size={26} />}
@@ -151,7 +152,6 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* BACKDROP */}
             <motion.div
               className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
               initial={{ opacity: 0 }}
@@ -159,7 +159,6 @@ const Navbar = () => {
               exit={{ opacity: 0 }}
             />
 
-            {/* MENU */}
             <motion.div
               ref={menuRef}
               initial={{ x: "100%" }}
@@ -168,7 +167,6 @@ const Navbar = () => {
               transition={{ type: "spring", damping: 25 }}
               className="fixed top-0 right-0 h-screen w-[85%] max-w-sm bg-background z-50 shadow-2xl flex flex-col"
             >
-              {/* HEADER */}
               <div className="flex items-center justify-between p-5 border-b border-white/10">
                 <span className="font-bold text-lg">Menu</span>
                 <button onClick={() => setMobileOpen(false)}>
@@ -176,7 +174,6 @@ const Navbar = () => {
                 </button>
               </div>
 
-              {/* CONTENT */}
               <div className="flex-1 overflow-y-auto p-4 space-y-2">
                 {navItems.map((item) => (
                   <div key={item.href}>
@@ -203,7 +200,6 @@ const Navbar = () => {
                   </div>
                 ))}
 
-                {/* BOTÃO WHATSAPP MOBILE */}
                 <a
                   href={whatsappLink}
                   target="_blank"
