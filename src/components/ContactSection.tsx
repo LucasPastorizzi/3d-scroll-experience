@@ -7,134 +7,130 @@ import {
   Navigation,
 } from "lucide-react";
 
+const hours = [
+  { label: "Terça – sexta", value: "09h – 18h" },
+  { label: "Sábado", value: "08h – 19h" },
+  { label: "Domingo", value: "08h – 19h" },
+  { label: "Segunda", value: "Fechado", closed: true },
+];
+
 const ContactSection = () => {
   return (
-    <section id="contato" className="relative">
+    <section id="contato" className="bg-gray-100 text-gray-900">
+      <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.45 }}
+          className="max-w-5xl mx-auto"
+        >
+          <div className="text-center mb-10 md:mb-12">
+            <p className="text-xs uppercase tracking-[0.2em] text-teal-600 font-medium">
+              Contato
+            </p>
+            <h2 className="mt-2 font-heading text-3xl md:text-4xl font-bold text-gray-900">
+              Localização e horários
+            </h2>
+            <p className="mt-3 text-sm md:text-base text-gray-600 max-w-lg mx-auto">
+              Estrada Rural, Km 5 · Interior, RS
+            </p>
+          </div>
 
-      {/* 🔥 MAPA FULL (BASE DA SEÇÃO) */}
-      <div className="relative w-full h-[70vh] min-h-[400px] md:h-[80vh]">
-        <iframe
-          src="https://www.google.com/maps?q=Ivoti+RS&output=embed"
-          className="absolute inset-0 w-full h-full border-0"
-          loading="lazy"
-        />
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+            <div className="rounded-xl overflow-hidden border border-gray-200 aspect-[4/3] md:aspect-[16/10] min-h-[220px] shadow-sm bg-gray-50">
+              <iframe
+                title="Mapa — Pesque Pague Giaretta"
+                src="https://www.google.com/maps?q=Ivoti+RS&output=embed"
+                className="w-full h-full border-0"
+                loading="lazy"
+              />
+            </div>
 
-        {/* 🔥 OVERLAY ESCURO (LEGIBILIDADE) */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
-      </div>
+            <div className="space-y-8">
+              <div className="flex gap-3">
+                <MapPin className="text-teal-600 shrink-0 mt-0.5" size={20} />
+                <div>
+                  <p className="text-sm font-semibold text-gray-900">Endereço</p>
+                  <p className="mt-1 text-sm text-gray-600 leading-relaxed">
+                    Estrada Rural, Km 5
+                    <br />
+                    Interior — RS
+                  </p>
+                </div>
+              </div>
 
-      {/* 🔥 CONTEÚDO SOBREPOSTO */}
-      <div className="absolute inset-0 flex items-end md:items-center">
-        <div className="container mx-auto px-4 md:px-6 pb-10 md:pb-0">
-          
-          <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="grid lg:grid-cols-2 gap-6 items-center"
-          >
+              <div className="flex gap-3">
+                <Phone className="text-teal-600 shrink-0 mt-0.5" size={20} />
+                <div>
+                  <p className="text-sm font-semibold text-gray-900">Telefone</p>
+                  <a
+                    href="tel:+555430000000"
+                    className="mt-1 text-sm text-gray-600 hover:text-teal-700 transition-colors"
+                  >
+                    (54) 3000-0000
+                  </a>
+                </div>
+              </div>
 
-            {/* 🔥 TEXTO PRINCIPAL */}
-            <div className="text-white max-w-xl">
-              <span className="text-xs md:text-sm uppercase tracking-widest text-primary">
-                Localização
-              </span>
+              <div className="flex gap-3">
+                <Clock className="text-teal-600 shrink-0 mt-0.5" size={20} />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-gray-900">Funcionamento</p>
+                  <ul className="mt-3 space-y-2 text-sm">
+                    {hours.map((row) => (
+                      <li
+                        key={row.label}
+                        className="flex justify-between gap-4 border-b border-gray-200 pb-2 last:border-0 last:pb-0"
+                      >
+                        <span
+                          className={
+                            row.closed ? "text-red-600" : "text-gray-600"
+                          }
+                        >
+                          {row.label}
+                        </span>
+                        <span
+                          className={
+                            row.closed
+                              ? "text-red-600 font-medium"
+                              : "text-gray-900 tabular-nums"
+                          }
+                        >
+                          {row.value}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
 
-              <h2 className="text-3xl md:text-5xl font-bold mt-3 leading-tight">
-                Venha viver uma experiência única
-              </h2>
-
-              <p className="mt-4 text-sm md:text-base text-white/80">
-                Natureza, pesca, gastronomia e momentos inesquecíveis em um só lugar.
-              </p>
-
-              {/* CTA */}
-              <div className="flex flex-col sm:flex-row gap-3 mt-6">
-
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <a
                   href="https://wa.me/5500000000000"
                   target="_blank"
-                  className="flex items-center justify-center gap-2 bg-green-500 px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-green-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-green-500 transition-colors"
                 >
-                  <MessageCircle size={20} />
+                  <MessageCircle size={18} />
                   WhatsApp
                 </a>
-
                 <a
-                  href="https://www.google.com/maps"
+                  href="https://www.google.com/maps/search/?api=1&query=Ivoti+RS"
                   target="_blank"
-                  className="flex items-center justify-center gap-2 border border-white/40 px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 transition-colors"
                 >
                   <Navigation size={18} />
                   Como chegar
                 </a>
-
               </div>
             </div>
-
-            {/* 🔥 CARD DE INFORMAÇÕES */}
-            <div className="bg-background/95 backdrop-blur-xl rounded-2xl p-5 md:p-7 shadow-2xl space-y-5">
-
-              {/* ENDEREÇO */}
-              <div className="flex gap-4 items-start">
-                <MapPin className="text-primary mt-1" />
-                <div>
-                  <p className="font-semibold">Endereço</p>
-                  <p className="text-sm text-muted-foreground">
-                    Estrada Rural, Km 5<br />
-                    Interior - RS
-                  </p>
-                </div>
-              </div>
-
-              {/* TELEFONE */}
-              <div className="flex gap-4 items-start">
-                <Phone className="text-primary mt-1" />
-                <div>
-                  <p className="font-semibold">Telefone</p>
-                  <p className="text-sm text-muted-foreground">
-                    (54) 3000-0000
-                  </p>
-                </div>
-              </div>
-
-              {/* HORÁRIO MELHORADO */}
-              <div className="flex gap-4 items-start">
-                <Clock className="text-primary mt-1" />
-                <div>
-                  <p className="font-semibold">Funcionamento</p>
-
-                  <div className="mt-2 text-sm text-muted-foreground space-y-1">
-                    <div className="flex justify-between">
-                      <span>Terça - Sexta</span>
-                      <span>09h - 18h</span>
-                    </div>
-
-                    <div className="flex justify-between">
-                      <span>Sábado</span>
-                      <span>08h - 19h</span>
-                    </div>
-
-                    <div className="flex justify-between">
-                      <span>Domingo</span>
-                      <span>08h - 19h</span>
-                    </div>
-
-                    <div className="flex justify-between text-red-500">
-                      <span>Segunda</span>
-                      <span>Fechado</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
 
-      {/* 🔥 FOOTER */}
-      <div className="py-6 text-center text-sm text-muted-foreground bg-background">
+      <div className="py-6 text-center text-sm text-gray-500 bg-gray-100 border-t border-gray-200">
         © 2026 Pesque Pague Giaretta. Todos os direitos reservados.
       </div>
     </section>
