@@ -28,34 +28,25 @@ const pescaImages = [
 const restauranteImages = [
   heroRestaurant,
   heroGarden,
-  heroEmporio,
-  heroRestaurant,
-  heroGarden,
+
 ];
 
 // Cabanas abertas
 const cabanasAbertasImages = [
   heroFishing,
-  heroGarden,
-  heroFishing,
-  heroGarden,
+  heroGarden
 ];
 
 // Cabanas fechadas
 const cabanasFechadasImages = [
   heroLazer,
-  heroEmporio,
-  heroLazer,
-  heroEmporio,
+  heroEmporio
 ];
 
 // Lazer
 const lazerImages = [
   heroLazer,
-  heroGarden,
-  heroEmporio,
-  heroFishing,
-  heroLazer,
+  heroGarden
 ];
 
 // 🔥 GALERIA MOSAICO

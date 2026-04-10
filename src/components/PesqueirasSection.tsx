@@ -1,199 +1,118 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
 
 type Props = {
   images: string[];
 };
 
 const PesqueirasSection = ({ images }: Props) => {
-  const [openModal, setOpenModal] = useState(false);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
   const peixes = [
-    { nome: "Tilápia", preco: "R$ 18/kg", img: images[0] },
-    { nome: "Pacu", preco: "R$ 22/kg", img: images[1] },
-    { nome: "Carpa", preco: "R$ 20/kg", img: images[2] },
-    { nome: "Tambaqui", preco: "R$ 25/kg", img: images[0] },
+    { nome: "Tilápia", preco: 18, desc: "A favorita para o dia a dia" },
+    { nome: "Traíra", preco: 20, desc: "Carne firme e sabor marcante" },
+    { nome: "Jundiá", preco: 22, desc: "Peixe de couro nobre" },
+    { nome: "Catfish", preco: 25, desc: "Suave e sem espinhos" },
+    { nome: "Carpa Comum", preco: 18, desc: "Tradição em cada quilo" },
+    { nome: "Carpa Cabeçuda", preco: 23, desc: "Ideal para cortes grandes" },
   ];
 
   return (
-    <section id="pesqueiras" className="relative py-20 overflow-hidden">
+    <section id="pesqueiras" className="relative py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
-
-        {/* TÍTULO */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          <span className="text-sm uppercase tracking-[0.2em] text-gray-600 font-medium">
-            Experiência completa
-          </span>
-
-          <h2 className="mt-4 text-4xl md:text-6xl font-bold text-black">
-            Pesqueiras do Giaretta
-          </h2>
-
-          <p className="mt-6 text-lg text-gray-800">
-            Um ambiente planejado para oferecer o melhor da pesca, com estrutura completa,
-            variedade de peixes e uma conexão única com a natureza.
-          </p>
-        </motion.div>
-
-        {/* 🐟 PESQUE & PAGUE */}
-        <div id="pesque-pague" className="mt-24">
+        
+        {/* HEADER ESTRUTURAL */}
+        <div className="grid lg:grid-cols-2 gap-16 items-start mb-24">
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            className="grid md:grid-cols-2 gap-12 items-center"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <motion.img
-              src={images[1]}
-              alt="Pesque e pague"
-              className="rounded-2xl w-full h-[400px] object-cover"
-              initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
-              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-            />
+            <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs">
+              Tabela de Valores
+            </span>
+            <h2 className="mt-4 text-5xl md:text-7xl font-black text-black leading-none">
+              Pesque <br /> & Pague.
+            </h2>
+            <p className="mt-8 text-xl text-gray-500 max-w-md leading-relaxed">
+              Trabalhamos com peixes frescos e ambiente controlado. Valores sujeitos a alteração conforme a temporada.
+            </p>
+          </motion.div>
 
-            <div>
-              <h3 className="text-3xl md:text-4xl font-bold text-black">
-                Pesque & Pague
-              </h3>
+          <motion.div 
+            className="bg-gray-50 p-8 md:p-12 rounded-[2rem] border border-gray-100 shadow-2xl shadow-gray-200/50"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+          >
+            <div className="flex justify-between items-end mb-10">
+              <h3 className="text-2xl font-bold italic underline decoration-blue-500 underline-offset-8">Preços por KG</h3>
+              <span className="text-[10px] text-gray-400 font-mono uppercase">Atualizado hoje</span>
+            </div>
 
-              <p className="mt-6 text-lg text-gray-800">
-                Ideal para quem busca lazer e praticidade, pesque e leve seu peixe na hora.
-              </p>
+            <div className="space-y-6">
+              {peixes.map((p, i) => (
+                <div key={i} className="group flex justify-between items-center border-b border-gray-200 pb-4">
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                      {p.nome}
+                    </h4>
+                    <p className="text-sm text-gray-400">{p.desc}</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-2xl font-black text-black">R$ {p.preco}</span>
+                    <span className="text-xs text-gray-400 block font-medium">/ kg</span>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-              <button
-                onClick={() => setOpenModal(true)}
-                className="mt-6 px-6 py-3 rounded-xl bg-black text-white font-medium hover:bg-gray-800 hover:scale-105 transition"
-              >
-                Ver valores dos peixes
-              </button>
+            <div className="mt-10 p-4 bg-white rounded-xl border-l-4 border-blue-500 italic text-sm text-gray-600">
+              * Limpeza e preparo para transporte inclusos em todos os tipos de peixe.
             </div>
           </motion.div>
         </div>
 
-        {/* GALERIA */}
-        <div className="mt-20 grid md:grid-cols-3 gap-6">
-          {images.map((img, i) => (
-            <motion.img
-              key={i}
-              src={img}
-              className="rounded-2xl h-64 w-full object-cover"
-              whileHover={{ scale: 1.05 }}
-            />
-          ))}
+        {/* ÁREA DE PESCA ESPORTIVA (DIFERENCIADA) */}
+        <div className="relative rounded-[3rem] overflow-hidden bg-black py-20 px-8 md:px-20 text-white">
+          <div className="absolute inset-0 opacity-40">
+            <img src={images[0]} className="w-full h-full object-cover grayscale" alt="Background" />
+          </div>
+          
+          <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-12">
+            <div className="max-w-xl">
+              <h3 className="text-4xl md:text-6xl font-black mb-6 italic leading-tight">
+                Pesca <br/> Esportiva
+              </h3>
+              <p className="text-gray-300 text-lg">
+                Para quem busca o desafio e a conexão com a água. Estrutura completa para pescadores amadores e profissionais.
+              </p>
+            </div>
+            
+            <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="bg-white text-black p-10 rounded-3xl text-center min-w-[280px]"
+            >
+              <span className="text-xs uppercase font-bold tracking-widest text-gray-400 block mb-2">Acesso por pessoa</span>
+              <div className="flex items-start justify-center">
+                <span className="text-2xl font-bold mt-2">R$</span>
+                <span className="text-7xl font-black tracking-tighter">50</span>
+              </div>
+              <p className="mt-4 font-bold text-blue-600 uppercase text-xs">Diária Completa</p>
+            </motion.div>
+          </div>
         </div>
 
-        {/* 🎣 PESCA ESPORTIVA */}
-        <motion.div
-          id="pesca-esportiva"
-          className="mt-24 grid md:grid-cols-2 gap-12 items-center"
-        >
-          <div>
-            <h3 className="text-3xl md:text-4xl font-bold text-black">
-              Pesca Esportiva
-            </h3>
-
-            <p className="mt-6 text-lg text-gray-800">
-              Experiência completa para pescadores, com estrutura e variedade de peixes.
-            </p>
-
-            <div className="mt-8 p-6 rounded-2xl bg-white border border-gray-300">
-              <span className="text-sm text-gray-600">Valor por pessoa</span>
-              <h4 className="text-3xl font-bold mt-2 text-black">R$ 50,00</h4>
-            </div>
-          </div>
-
-          <motion.img
-            src={images[0]}
-            className="rounded-2xl h-[400px] object-cover"
-          />
-        </motion.div>
+        {/* GALERIA MINIMALISTA */}
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+            {images.slice(0, 4).map((img, i) => (
+                <motion.div 
+                    key={i}
+                    whileHover={{ y: -10 }}
+                    className={`h-64 rounded-2xl overflow-hidden ${i % 2 !== 0 ? 'mt-8' : ''}`}
+                >
+                    <img src={img} className="w-full h-full object-cover" />
+                </motion.div>
+            ))}
+        </div>
 
       </div>
-
-      {/* 💥 MODAL */}
-      <AnimatePresence>
-        {openModal && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-white rounded-2xl max-w-4xl w-full p-6 relative shadow-xl"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-            >
-              <button
-                onClick={() => setOpenModal(false)}
-                className="absolute top-4 right-4 text-gray-600 hover:text-black"
-              >
-                ✕
-              </button>
-
-              <h3 className="text-2xl font-bold mb-6 text-black">
-                Valores dos Peixes
-              </h3>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                {peixes.map((p, i) => {
-                  const isOpen = activeIndex === i;
-
-                  return (
-                    <motion.div
-                      key={i}
-                      layout
-                      onClick={() => setActiveIndex(isOpen ? null : i)}
-                      className="cursor-pointer bg-white border border-gray-200 p-4 rounded-xl overflow-hidden"
-                    >
-                      {/* HEADER */}
-                      <div className="flex items-center gap-4">
-                        <img src={p.img} className="w-16 h-16 rounded-lg object-cover" />
-
-                        <div className="flex-1">
-                          <h4 className="font-bold text-black">{p.nome}</h4>
-                          <p className="text-gray-700">{p.preco}</p>
-                        </div>
-
-                        <span className="text-gray-600">{isOpen ? "▲" : "▼"}</span>
-                      </div>
-
-                      {/* EXPANSÃO */}
-                      <AnimatePresence>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="mt-4"
-                          >
-                            <img
-                              src={p.img}
-                              className="w-full h-40 object-cover rounded-lg mb-3"
-                            />
-
-                            <p className="text-sm text-gray-600">
-                              Peixe fresco de alta qualidade, capturado diretamente dos nossos lagos.
-                            </p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
