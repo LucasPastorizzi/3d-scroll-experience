@@ -18,7 +18,7 @@ const GalleryMosaic = ({ images }: GalleryProps) => {
     <section id="fotos" className="py-12 md:py-20 bg-background">
 =======
     <section id="fotos" className="py-20 md:py-32 bg-gray-100">
->>>>>>> a67182f44d4767c176cc9aba10088f2022a42a7d
+
       <div className="container mx-auto px-4 md:px-6">
 
         {/* HEADER */}
