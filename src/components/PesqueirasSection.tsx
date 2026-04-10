@@ -4,20 +4,6 @@ type Props = {
   images: string[];
 };
 
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0 },
-};
-
 const PesqueirasSection = ({ images }: Props) => {
   const peixes = [
     { nome: "Tilápia", preco: 18, desc: "A favorita para o dia a dia" },
@@ -29,95 +15,82 @@ const PesqueirasSection = ({ images }: Props) => {
   ];
 
   return (
-    <section
-      id="pesqueiras"
-      className="relative py-28 bg-gradient-to-b from-white to-gray-100 overflow-hidden"
-    >
-      <div className="container mx-auto px-6">
+    <section className="py-20 md:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* HEADER */}
-        <div className="grid lg:grid-cols-2 gap-20 items-start mb-28">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 mb-20 md:mb-24">
+          
+          {/* TEXTO */}
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            className="lg:col-span-5"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
           >
-            <span className="text-blue-600 font-bold tracking-[0.4em] uppercase text-xs">
-              Tabela de Valores
+            <span className="text-[10px] sm:text-xs tracking-[0.3em] text-gray-400 uppercase">
+              Pesque & Pague
             </span>
 
-            <h2 className="mt-6 text-5xl md:text-7xl font-black text-black leading-none">
-              Pesque <br /> & Pague.
+            <h2 className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 leading-tight">
+              Valores claros.
+              <br />
+              Experiência real.
             </h2>
 
-            <p className="mt-8 text-lg text-gray-500 max-w-md leading-relaxed">
-              Peixes frescos direto do tanque. Experiência única com qualidade e transparência nos valores.
+            <p className="mt-4 sm:mt-6 text-sm sm:text-base text-gray-500 leading-relaxed max-w-md">
+              Trabalhamos com peixes frescos em ambiente controlado. 
+              Transparência nos valores e qualidade garantida.
             </p>
           </motion.div>
 
-          {/* CARD PREÇOS */}
+          {/* TABELA */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            className="backdrop-blur-xl bg-white/60 p-10 md:p-12 rounded-[2rem] border border-white/40 shadow-2xl"
+            className="lg:col-span-7 border-t border-gray-200"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
           >
-            <div className="flex justify-between items-end mb-10">
-              <h3 className="text-2xl font-bold italic underline decoration-blue-500 underline-offset-8">
-                Preços por KG
-              </h3>
-              <span className="text-[10px] text-gray-400 font-mono uppercase">
-                Atualizado hoje
-              </span>
-            </div>
+            {peixes.map((p, i) => (
+              <div
+                key={i}
+                className="
+                  flex flex-col sm:grid sm:grid-cols-3 
+                  gap-2 sm:gap-4 
+                  py-5 border-b border-gray-100
+                "
+              >
+                <h4 className="text-base sm:text-lg font-medium text-gray-900">
+                  {p.nome}
+                </h4>
 
-            <div className="space-y-6">
-              {peixes.map((p, i) => (
-                <motion.div
-                  key={i}
-                  variants={itemVariants}
-                  className="group relative flex justify-between items-center pb-4"
-                >
-                  {/* linha animada */}
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-blue-500 group-hover:w-full transition-all duration-500"></span>
+                <p className="text-sm text-gray-400">
+                  {p.desc}
+                </p>
 
-                  <div>
-                    <h4 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition">
-                      {p.nome}
-                    </h4>
-                    <p className="text-sm text-gray-400">{p.desc}</p>
-                  </div>
+                <div className="flex justify-between sm:block sm:text-right">
+                  <span className="text-lg sm:text-xl font-semibold text-gray-900">
+                    R$ {p.preco}
+                  </span>
+                  <span className="text-xs sm:text-sm text-gray-400 ml-1">
+                    /kg
+                  </span>
+                </div>
+              </div>
+            ))}
 
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="text-right"
-                  >
-                    <span className="text-2xl font-black text-black">
-                      R$ {p.preco}
-                    </span>
-                    <span className="text-xs text-gray-400 block font-medium">
-                      / kg
-                    </span>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mt-10 p-4 bg-white/70 backdrop-blur rounded-xl border-l-4 border-blue-500 italic text-sm text-gray-600">
+            <p className="text-[11px] sm:text-xs text-gray-400 mt-4 sm:mt-6">
               * Limpeza e preparo inclusos.
-            </div>
+            </p>
           </motion.div>
         </div>
 
-        {/* PESCA ESPORTIVA */}
-        <div className="relative rounded-[3rem] overflow-hidden py-24 px-10 md:px-20 text-white bg-black">
-          
-          {/* background com overlay + zoom */}
+        {/* BLOCO DE DESTAQUE */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center">
+
+          {/* IMAGEM */}
           <motion.div
-            initial={{ scale: 1.2 }}
-            whileInView={{ scale: 1 }}
-            transition={{ duration: 1.5 }}
-            className="absolute inset-0 opacity-40"
+            className="lg:col-span-7 h-[260px] sm:h-[320px] md:h-[420px] rounded-xl md:rounded-2xl overflow-hidden"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
           >
             <img
               src={images[0]}
@@ -125,62 +98,54 @@ const PesqueirasSection = ({ images }: Props) => {
             />
           </motion.div>
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
+          {/* INFO */}
+          <motion.div
+            className="lg:col-span-5"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            <span className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400">
+              Pesca Esportiva
+            </span>
 
-          <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-12">
-            <div className="max-w-xl">
-              <h3 className="text-5xl md:text-6xl font-black mb-6 italic leading-tight">
-                Pesca <br /> Esportiva
-              </h3>
+            <h3 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
+              Um espaço para quem leva a pesca a sério.
+            </h3>
 
-              <p className="text-gray-300 text-lg">
-                Viva a experiência da pesca esportiva com estrutura completa e ambiente natural.
-              </p>
-            </div>
+            <p className="mt-4 sm:mt-6 text-sm sm:text-base text-gray-500 leading-relaxed">
+              Estrutura pensada para proporcionar uma experiência tranquila, 
+              tanto para iniciantes quanto para pescadores experientes.
+            </p>
 
-            {/* CARD PREÇO */}
-            <motion.div
-              whileHover={{ scale: 1.08, rotate: 1 }}
-              className="bg-white text-black p-10 rounded-3xl text-center min-w-[280px] shadow-[0_0_40px_rgba(59,130,246,0.3)]"
-            >
-              <span className="text-xs uppercase font-bold tracking-widest text-gray-400 block mb-2">
-                Acesso por pessoa
+            {/* PREÇO */}
+            <div className="mt-6 sm:mt-10 flex items-end gap-2">
+              <span className="text-base sm:text-lg text-gray-500">R$</span>
+              <span className="text-3xl sm:text-5xl font-semibold text-gray-900">
+                50
               </span>
-
-              <div className="flex items-start justify-center">
-                <span className="text-2xl font-bold mt-2">R$</span>
-                <span className="text-7xl font-black tracking-tighter">
-                  50
-                </span>
-              </div>
-
-              <p className="mt-4 font-bold text-blue-600 uppercase text-xs">
-                Diária Completa
-              </p>
-            </motion.div>
-          </div>
+              <span className="text-xs sm:text-sm text-gray-400 mb-1">
+                / diária
+              </span>
+            </div>
+          </motion.div>
         </div>
 
         {/* GALERIA */}
-        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="mt-16 sm:mt-24 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {images.slice(0, 4).map((img, i) => (
             <motion.div
               key={i}
-              whileHover={{ scale: 1.05 }}
-              className={`relative h-64 rounded-2xl overflow-hidden group ${
-                i % 2 !== 0 ? "mt-10" : ""
-              }`}
+              className="h-36 sm:h-48 md:h-56 overflow-hidden rounded-lg sm:rounded-xl"
+              whileHover={{ scale: 1.02 }}
             >
               <img
                 src={img}
-                className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                className="w-full h-full object-cover transition duration-500 hover:scale-105"
               />
-
-              {/* overlay elegante */}
-              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition" />
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
