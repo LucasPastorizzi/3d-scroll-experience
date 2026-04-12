@@ -78,6 +78,8 @@ const Index = () => {
       {/* SOBRE */}
       <AboutSection />
 
+
+
       {/* PESQUEIRAS */}
       <PesqueirasSection images={pescaImages} />
 
