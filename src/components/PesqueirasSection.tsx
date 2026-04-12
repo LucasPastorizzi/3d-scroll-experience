@@ -53,24 +53,26 @@ export default function PesqueirasSection({ images }: Props) {
             Aqui a pesca é vivida do seu jeito
           </h2>
           <p className="text-gray-400 mt-6 text-lg leading-relaxed">
-            Ambientes pensados para quem busca tranquilidade, técnica ou
-            simplesmente bons momentos junto à natureza.
+            Seja para levar o peixe para casa ou para viver a experiência da
+            pesca esportiva, oferecemos ambientes tranquilos, bem cuidados e
+            pensados para diferentes perfis de pescadores.
           </p>
         </motion.div>
 
         {/* ===================== PESQUE & PAGUE ===================== */}
         <div className="grid lg:grid-cols-2 gap-24 items-center">
 
-          {/* IMAGEM ORGÂNICA */}
+          {/* IMAGEM 3D + HOVER */}
           <motion.div
             variants={imageLeft}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             whileHover={{
-              scale: 1.05,
+              scale: 1.06,
               rotateY: -6,
               rotateX: 3,
+              boxShadow: "0px 40px 80px rgba(0,0,0,0.6)",
             }}
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
             style={{
@@ -79,23 +81,13 @@ export default function PesqueirasSection({ images }: Props) {
             }}
             className="relative"
           >
-            {/* moldura */}
-            <div className="absolute inset-0 bg-white/5 
-              rounded-[80px_20px_80px_20px] 
-              translate-x-6 translate-y-6"
-            />
+            {/* camada fake de profundidade */}
+            <div className="absolute inset-0 bg-white/5 rounded-3xl translate-x-6 translate-y-6" />
 
             <img
               src={images[0]}
               alt="Pesque e Pague"
-              className="
-                relative 
-                w-full 
-                h-[520px] 
-                object-cover
-                rounded-[80px_20px_80px_20px]
-                shadow-2xl
-              "
+              className="relative h-[520px] w-full object-cover rounded-3xl"
             />
           </motion.div>
 
@@ -114,8 +106,14 @@ export default function PesqueirasSection({ images }: Props) {
             </h3>
 
             <p className="text-gray-400 mt-6 leading-relaxed">
-              Uma modalidade simples e acolhedora, onde você pesca no seu ritmo
-              e paga apenas pelo peixe que levar.
+              No pesque e pague, a dinâmica é simples e acessível: você pesca
+              livremente e paga apenas pelo peixe que decidir levar. Uma opção
+              perfeita para quem quer peixe fresco e momentos tranquilos.
+            </p>
+
+            <p className="text-gray-400 mt-4 leading-relaxed">
+              O ambiente é familiar, organizado e ideal para quem está começando
+              ou busca um lazer agradável ao ar livre.
             </p>
 
             <div className="mt-10 space-y-3 text-gray-300">
@@ -153,30 +151,43 @@ export default function PesqueirasSection({ images }: Props) {
               Pesca Esportiva
             </span>
             <h3 className="text-4xl font-semibold mt-4">
-              Técnica, desafio e respeito à natureza
+              A experiência da pesca em sua forma mais pura
             </h3>
 
             <p className="text-gray-400 mt-6 leading-relaxed">
-              Para quem busca uma experiência mais intensa, baseada em técnica,
-              paciência e preservação ambiental.
+              A pesca esportiva é focada na técnica, paciência e respeito à
+              natureza. O peixe é fisgado, apreciado e devolvido à água,
+              preservando o ecossistema.
+            </p>
+
+            <p className="text-gray-400 mt-4 leading-relaxed">
+              Os açudes são exclusivos para essa modalidade, garantindo silêncio,
+              desafio e uma experiência mais intensa para o pescador.
             </p>
 
             <div className="mt-8">
               <span className="text-gray-400">Acesso diário</span>
               <div className="text-4xl font-semibold mt-2">R$ 50</div>
             </div>
+
+            <ul className="mt-8 list-disc list-inside text-gray-400 space-y-2">
+              <li>Pesque e solte</li>
+              <li>Açudes preservados</li>
+              <li>Ideal para pescadores experientes</li>
+            </ul>
           </motion.div>
 
-          {/* IMAGEM RECORTE FORTE */}
+          {/* IMAGEM 3D + HOVER */}
           <motion.div
             variants={imageRight}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             whileHover={{
-              scale: 1.05,
+              scale: 1.06,
               rotateY: 6,
               rotateX: 3,
+              boxShadow: "0px 40px 80px rgba(0,0,0,0.6)",
             }}
             transition={{ type: "spring", stiffness: 120, damping: 18 }}
             style={{
@@ -185,23 +196,13 @@ export default function PesqueirasSection({ images }: Props) {
             }}
             className="relative"
           >
-            {/* moldura */}
-            <div className="absolute inset-0 bg-white/5 
-              rounded-[20px_100px_20px_100px] 
-              -translate-x-6 translate-y-6"
-            />
+            {/* camada fake de profundidade */}
+            <div className="absolute inset-0 bg-white/5 rounded-3xl -translate-x-6 translate-y-6" />
 
             <img
               src={images[1]}
               alt="Pesca esportiva"
-              className="
-                relative 
-                w-full 
-                h-[520px] 
-                object-cover
-                rounded-[20px_100px_20px_100px]
-                shadow-2xl
-              "
+              className="relative h-[520px] w-full object-cover rounded-3xl"
             />
           </motion.div>
         </div>
