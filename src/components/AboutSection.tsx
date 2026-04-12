@@ -39,35 +39,32 @@ const AboutSection = () => {
         {/* TÍTULO */}
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-heading text-4xl md:text-6xl font-bold text-gray-900">
-            Pesque Pague Giaretta
+            Pesque Pague Wiest
           </h2>
         </div>
 
         {/* TEXTO */}
-        <div className="mt-16 max-w-5xl mx-auto text-center space-y-8">
-          <p className="text-lg md:text-xl leading-relaxed text-gray-700">
-            Muito mais do que um simples pesqueiro, o{" "}
-            <strong>Giaretta</strong> é um verdadeiro refúgio para quem busca
-            tranquilidade, lazer e contato com a natureza.
-          </p>
+   {/* TEXTO */}
+<div className="mt-16 max-w-5xl mx-auto text-center space-y-8">
+  <p className="text-lg md:text-xl leading-relaxed text-gray-700">
+    Localizado no coração de Morro Reuter, o{" "}
+    <strong>Pesque Pague Wiest</strong> é o lugar ideal para quem busca
+    tranquilidade, contato com a natureza e a emoção de uma boa pescaria.
+  </p>
 
-          <p className="text-lg md:text-xl leading-relaxed text-gray-700">
-            Nossas pesqueiras contam com grande variedade de peixes,
-            proporcionando uma experiência completa tanto para iniciantes quanto
-            para pescadores experientes.
-          </p>
+  <p className="text-lg md:text-xl leading-relaxed text-gray-700">
+    Rodeado pela paisagem serrana gaúcha, nosso espaço oferece uma
+    experiência completa para toda a família — desde o iniciante que quer
+    sentir a primeira fisgada até o pescador experiente em busca de um
+    belo exemplar.
+  </p>
 
-          <p className="text-lg md:text-xl leading-relaxed text-gray-700">
-            Em meio a jardins exuberantes e um ambiente acolhedor, você também
-            encontra gastronomia regional e experiências com vinhos
-            selecionados.
-          </p>
-
-          <p className="text-lg md:text-xl leading-relaxed text-gray-700">
-            Aqui, cada visita se transforma em um momento único de descanso,
-            conexão e lazer em família.
-          </p>
-        </div>
+  <p className="text-lg md:text-xl leading-relaxed text-gray-700">
+    Venha passar um dia diferente, longe da correria do dia a dia, em um
+    ambiente acolhedor que tem o jeito simples e genuíno da tradição do
+    interior.
+  </p>
+</div>
 
         {/* LINHA DIVISÓRIA */}
         <motion.div
