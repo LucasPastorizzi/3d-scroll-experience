@@ -6,97 +6,103 @@ import {
   MessageCircle,
   Navigation,
 } from "lucide-react";
+import logo from "@/assets/Flypi.png"; 
+
+// IMPORTA SUA IMAGEM AQUI
+import bgImage from "@/assets/hero-fishing.jpg"; // troca pelo caminho correto
 
 const hours = [
-  { label: "Terça – sexta", value: "09h – 18h" },
-  { label: "Sábado", value: "08h – 19h" },
-  { label: "Domingo", value: "08h – 19h" },
-  { label: "Segunda", value: "Fechado", closed: true },
+  { label: "Quarta – Segunda", value: "07h – 18h" },
+  { label: "Sábado", value: "07h – 18:30h" },
+  { label: "Domingo", value: "07h – 18:30h" },
+  { label: "Terça", value: "Fechado", closed: true },
 ];
 
 const ContactSection = () => {
   return (
-    <section id="contato" className="bg-gray-100 text-gray-900">
-      <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
+    <section id="contato" className="relative text-white overflow-hidden">
+      
+      {/* IMAGEM DE FUNDO */}
+      <div
+        className="absolute inset-0 bg-cover bg-center scale-110 blur-xl"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      />
+
+      {/* OVERLAY ESCURO (ESSENCIAL PRA LEITURA) */}
+      <div className="absolute inset-0 bg-black/70" />
+
+      {/* CONTEÚDO */}
+      <div className="relative container mx-auto px-4 md:px-6 py-16 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.45 }}
+          transition={{ duration: 0.5 }}
           className="max-w-5xl mx-auto"
         >
           <div className="text-center mb-10 md:mb-12">
-            <p className="text-xs uppercase tracking-[0.2em] text-teal-600 font-medium">
+            <p className="text-xs uppercase tracking-[0.2em] text-gray-300 font-medium">
               Contato
             </p>
-            <h2 className="mt-2 font-heading text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="mt-2 text-3xl md:text-4xl font-bold">
               Localização e horários
             </h2>
-            <p className="mt-3 text-sm md:text-base text-gray-600 max-w-lg mx-auto">
-              Estrada Rural, Km 5 · Interior, RS
+            <p className="mt-3 text-sm md:text-base text-gray-300 max-w-lg mx-auto">
+             R. Arthur Alfredo Hoffmeister, 865, Morro Reuter - RS, 93990-000
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-            <div className="rounded-xl overflow-hidden border border-gray-200 aspect-[4/3] md:aspect-[16/10] min-h-[220px] shadow-sm bg-gray-50">
+            
+            {/* MAPA */}
+            <div className="rounded-xl overflow-hidden border border-white/10 aspect-[4/3] md:aspect-[16/10] min-h-[220px] bg-white/5 backdrop-blur-md">
               <iframe
-                title="Mapa — Pesque Pague Giaretta"
-                src="https://www.google.com/maps?q=Ivoti+RS&output=embed"
+                title="Mapa"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6942.67541067734!2d-51.075862032311335!3d-29.535658150320828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95194896b8a469b7%3A0x13666183391aea96!2sPesqueiro%20Wiest!5e0!3m2!1spt-BR!2sbr!4v1776039332823!5m2!1spt-BR!2sbr"
                 className="w-full h-full border-0"
                 loading="lazy"
               />
             </div>
 
+            {/* INFO */}
             <div className="space-y-8">
               <div className="flex gap-3">
-                <MapPin className="text-teal-600 shrink-0 mt-0.5" size={20} />
+                <MapPin size={20} className="text-white/70" />
                 <div>
-                  <p className="text-sm font-semibold text-gray-900">Endereço</p>
-                  <p className="mt-1 text-sm text-gray-600 leading-relaxed">
-                    Estrada Rural, Km 5
-                    <br />
-                    Interior — RS
+                  <p className="text-sm font-semibold">Endereço</p>
+                  <p className="text-sm text-gray-300">
+                    Rua Arthur Alfredo Hoffmeister, n° 865, <br />
+                    Morro Reuter - RS, 93990-000
                   </p>
                 </div>
               </div>
 
               <div className="flex gap-3">
-                <Phone className="text-teal-600 shrink-0 mt-0.5" size={20} />
+                <Phone size={20} className="text-white/70" />
                 <div>
-                  <p className="text-sm font-semibold text-gray-900">Telefone</p>
+                  <p className="text-sm font-semibold">Telefone</p>
                   <a
                     href="tel:+555430000000"
-                    className="mt-1 text-sm text-gray-600 hover:text-teal-700 transition-colors"
+                    className="text-sm text-gray-300 hover:text-white"
                   >
-                    (54) 3000-0000
+                     (51) 99764-4478
                   </a>
                 </div>
               </div>
 
               <div className="flex gap-3">
-                <Clock className="text-teal-600 shrink-0 mt-0.5" size={20} />
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900">Funcionamento</p>
-                  <ul className="mt-3 space-y-2 text-sm">
+                <Clock size={20} className="text-white/70" />
+                <div className="w-full">
+                  <p className="text-sm font-semibold">Funcionamento</p>
+                  <ul className="mt-2 space-y-2 text-sm">
                     {hours.map((row) => (
                       <li
                         key={row.label}
-                        className="flex justify-between gap-4 border-b border-gray-200 pb-2 last:border-0 last:pb-0"
+                        className="flex justify-between border-b border-white/10 pb-2"
                       >
-                        <span
-                          className={
-                            row.closed ? "text-red-600" : "text-gray-600"
-                          }
-                        >
+                        <span className={row.closed ? "text-red-400" : "text-gray-300"}>
                           {row.label}
                         </span>
-                        <span
-                          className={
-                            row.closed
-                              ? "text-red-600 font-medium"
-                              : "text-gray-900 tabular-nums"
-                          }
-                        >
+                        <span className={row.closed ? "text-red-400" : "text-white"}>
                           {row.value}
                         </span>
                       </li>
@@ -105,21 +111,21 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              {/* BOTÕES */}
+              <div className="flex gap-3 flex-wrap">
                 <a
                   href="https://wa.me/5500000000000"
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-green-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-green-500 transition-colors"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition"
                 >
                   <MessageCircle size={18} />
                   WhatsApp
                 </a>
+
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=Ivoti+RS"
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 hover:bg-white/10 transition"
                 >
                   <Navigation size={18} />
                   Como chegar
@@ -130,9 +136,18 @@ const ContactSection = () => {
         </motion.div>
       </div>
 
-      <div className="py-6 text-center text-sm text-gray-500 bg-gray-100 border-t border-gray-200">
-        © 2026 Pesque Pague Giaretta. Todos os direitos reservados.
-      </div>
+     {/* FOOTER */}
+<div className="relative py-6 text-center text-sm text-gray-400 border-t border-white/10">
+  <div className="flex items-center justify-center gap-2 flex-wrap">
+    <span>© 2026 Pesque Pague Wiest -</span>
+
+   <img
+  src={logo}
+  alt="Flypi"
+  className="h-14 md:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition"
+/>
+  </div>
+</div>
     </section>
   );
 };
